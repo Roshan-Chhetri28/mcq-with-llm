@@ -1,0 +1,32 @@
+{
+  "name": "mcq-with-llm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon run server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roshan-Chhetri28/mcq-with-llm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Roshan-Chhetri28/mcq-with-llm/issues"
+  },
+  "homepage": "https://github.com/Roshan-Chhetri28/mcq-with-llm#readme",
+  "dependencies": {
+    "@langchain/community": "^0.3.42",
+    "@langchain/core": "^0.3.51",
+    "@langchain/openai": "^0.5.10",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "openai": "^4.97.0"
+  }
+}
