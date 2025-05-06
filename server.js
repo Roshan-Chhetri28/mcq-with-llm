@@ -18,7 +18,7 @@ app.use('/api/ask', require('./askLLM'));
 
 if (process.env.NODE_ENV === 'production') {
   // resolve to /opt/render/project/client/build
-  const clientBuildPath = path.resolve(__dirname, 'client', 'build');
+  const clientBuildPath = path.resolve(__dirname, 'client', 'dist');
 
   app.use(express.static(clientBuildPath));
 
