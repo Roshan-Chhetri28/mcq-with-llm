@@ -24,7 +24,7 @@ const ResponseRenderer = ({ content }) => (
       remarkPlugins={[remarkGfm, remarkMath]}
       // Allow raw HTML (needed for KaTeX and any ChatGPT HTML snippets):
       rehypePlugins={[rehypeRaw, rehypeKatex]}
-      // Do not escape HTML—you trust ChatGPT’s output here.
+      
       skipHtml={false}
       components={{
         code({ node, inline, className, children, ...props }) {
