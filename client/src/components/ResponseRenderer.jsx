@@ -21,10 +21,10 @@ const ResponseRenderer = ({ content }) => (
   <ErrorBoundary FallbackComponent={ErrorFallback}>
     <ReactMarkdown
       // Let GFM (tables, strikethrough, task lists) through:
-      remarkPlugins={[remarkGfm, remarkMath]}
+      remarkPlugins={[ remarkMath,remarkGfm]}
       // Allow raw HTML (needed for KaTeX and any ChatGPT HTML snippets):
       rehypePlugins={[rehypeRaw, rehypeKatex]}
-      
+
       skipHtml={false}
       components={{
         code({ node, inline, className, children, ...props }) {
