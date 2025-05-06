@@ -13,12 +13,14 @@ router.post('/', async (req, res) => {
     console.log(req)
     try {
         const llm = new ChatOpenAI({
-            apiKey: process.env.OPENAI_API_KEY
+            apiKey: process.env.OPENAI_API_KEY,
+            model:"gpt-4o"
         });
 
         const systemMessage = new SystemMessage({
-            content: 'You are a helpful assistant that explains MCQ options and provides clarification.'
-        });
+            content: 'You are a helpful assistant that explains MCQ options and provides clarification. Format your responses using Markdown for tables and other md render-able type else Use, LaTeX (for math), and other formatting features as appropriate so that the output is clear and renderable on the frontend, similar to how ChatGPT presents its responses.'
+          });
+          
 
         // Fix: Properly format the user message content
         const userMessage = new HumanMessage({
