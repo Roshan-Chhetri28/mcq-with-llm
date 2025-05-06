@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import { processLaTeX } from '../utils/processLatex';
 
 export default function QuestionDisplay({ questionData: { question, options, correct, explanation } }) {
   const [click, setClick] = useState(false);
@@ -9,9 +13,20 @@ export default function QuestionDisplay({ questionData: { question, options, cor
     setAnswer(selectedKey);
   };
 
+  // Process LaTeX
+  const processedQuestion = processLaTeX(question);
+  const processedExplanation = processLaTeX(explanation);
+
   return (
     <div className="m-3 space-y-4">
-      <p className="text-lg text-gray-700 font-bold">{question}</p>
+      <div className="text-lg text-gray-700 font-bold">
+        <ReactMarkdown
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeKatex]}
+        >
+          {processedQuestion}
+        </ReactMarkdown>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {Object.entries(options).map(([key, value]) => (
@@ -19,7 +34,6 @@ export default function QuestionDisplay({ questionData: { question, options, cor
             <span className="font-semibold text-blue-600">{key}:</span>
             <span
               className={
-                ""&&
                 click
                   ? answer === correct
                     ? "ml-2 font-bold text-green-800"
@@ -47,8 +61,14 @@ export default function QuestionDisplay({ questionData: { question, options, cor
           </div>
 
           <div className="p-3 rounded-lg bg-blue-50">
-            <span className="font-semibold text-blue-700">Explanation:</span>
-            <span className="ml-2 text-blue-800">{explanation}</span>
+            <div className="font-semibold text-blue-700">
+              <ReactMarkdown
+                remarkPlugins={[remarkMath]}
+                rehypePlugins={[rehypeKatex]}
+              >
+                {`**Explanation:** ${processedExplanation}`}
+              </ReactMarkdown>
+            </div>
           </div>
         </>
       )}
