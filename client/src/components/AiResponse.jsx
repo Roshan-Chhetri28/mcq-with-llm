@@ -12,7 +12,7 @@ const AiResponse = ({ questionData }) => {
         setLoading(true);
 
         try {
-            const { data } = await axios.post('http://localhost:5000/api/question', {
+            const { data } = await axios.post('api/question', {
                 question: questionData,
                 query
             });
