@@ -2,8 +2,13 @@ const { ChatOpenAI } = require('@langchain/openai');
 const { HumanMessage, SystemMessage } = require('@langchain/core/messages');
 const express = require('express');
 const router = express.Router();
+const LangChainTracer = require("@langchain/core/tracers/tracer_langchain")
+
 require('dotenv').config();
 
+
+process.env.LANGCHAIN_TRACING_V2 = "true";
+process.env.LANGCHAIN_API_KEY = process.env.LANGCHAIN_API
 router.post('/', async (req, res) => {
     console.log(req)
     try {
@@ -22,7 +27,7 @@ router.post('/', async (req, res) => {
 
         const response = await llm.invoke([systemMessage, userMessage]);
 
-        res.json({ answer: response.content }); 
+        res.json({ answer: response.content });
     } catch (err) {
         console.error('Error in processing:', err);
         res.status(500).json({ error: 'Something went wrong with the AI response.' });

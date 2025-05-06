@@ -1,29 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function QuestionDisplay({ questionData }) {
+export default function QuestionDisplay({ questionData: { question, options, correct, explanation } }) {
+  const [click, setClick] = useState(false);
+  const [answer, setAnswer] = useState('');
+
+  const handleAnswer = (selectedKey) => {
+    setClick(true);
+    setAnswer(selectedKey);
+  };
+
   return (
-    <div className="mx-3 space-y-4">
-        
-        <p className="text-lg text-gray-700">{questionData.question}</p>
+    <div className="m-3 space-y-4">
+      <p className="text-lg text-gray-700 font-bold">{question}</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {Object.entries(questionData.options).map(([key, value]) => (
-            <div key={key} className="p-3 border rounded-lg bg-gray-50">
-              <span className="font-semibold text-blue-600">{key}:</span>
-              <span className="ml-2 text-gray-800">{value}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="p-3 rounded-lg bg-green-50">
-          <span className="font-semibold text-green-700">Correct Answer:</span>
-          <span className="ml-2 text-green-800">{questionData.correct}</span>
-        </div>
-
-        <div className="p-3 rounded-lg bg-blue-50">
-          <span className="font-semibold text-blue-700">Explanation:</span>
-          <span className="ml-2 text-blue-800">{questionData.explanation}</span>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {Object.entries(options).map(([key, value]) => (
+          <div key={key} className="p-3 border rounded-lg bg-gray-50">
+            <span className="font-semibold text-blue-600">{key}:</span>
+            <span
+              className={
+                ""&&
+                click
+                  ? answer === correct
+                    ? "ml-2 font-bold text-green-800"
+                    : answer === key
+                    ? "ml-2 font-bold text-red-800"
+                    : "ml-2 font-bold text-gray-800"
+                  : "ml-2 font-bold text-gray-800"
+              }
+              onClick={() => !click && handleAnswer(key)}
+              style={{ cursor: click ? 'default' : 'pointer' }}
+            >
+              {value}
+            </span>
+          </div>
+        ))}
       </div>
+
+      {click && (
+        <>
+          <div className={answer === correct ? "p-3 rounded-lg bg-green-50" : "p-3 rounded-lg bg-red-50"}>
+            <span className={answer === correct ? "font-semibold text-green-700" : "font-semibold text-red-700"}>
+              Correct Answer:
+            </span>
+            <span className="ml-2 text-green-800">{correct}</span>
+          </div>
+
+          <div className="p-3 rounded-lg bg-blue-50">
+            <span className="font-semibold text-blue-700">Explanation:</span>
+            <span className="ml-2 text-blue-800">{explanation}</span>
+          </div>
+        </>
+      )}
+    </div>
   );
 }

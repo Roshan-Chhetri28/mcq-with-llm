@@ -27,7 +27,7 @@ const AiResponse = ({questionData}) => {
         setLoading(false);
     };
     return (
-        <div className="space-y-4">
+        <div className="p-3 space-y-4">
             <textarea
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
