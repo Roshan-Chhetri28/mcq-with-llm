@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ResponseRenderer from './ResponseRenderer';
 import axios from 'axios';
-const AiResponse = ({questionData}) => {
+const AiResponse = ({ questionData }) => {
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('');
@@ -12,7 +12,7 @@ const AiResponse = ({questionData}) => {
         setLoading(true);
 
         try {
-            const { data } = await axios.post('http://localhost:5000/api/ask', {
+            const { data } = await axios.post('http://localhost:5000/api/question', {
                 question: questionData,
                 query
             });
@@ -21,7 +21,7 @@ const AiResponse = ({questionData}) => {
         } catch (err) {
             setResponse('**Error**: Failed to get response. Please try again.');
             console.error(err);
-            
+
         }
 
         setLoading(false);

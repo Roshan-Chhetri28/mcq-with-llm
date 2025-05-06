@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { OpenAI } = require('openai');
 require('dotenv').config();
-const path = require('path'); 
+const path = require('path');
 
 const app = express();
 const openai = new OpenAI({
@@ -14,7 +14,7 @@ app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173'
 }));
 
-app.use('/api/ask', require('./askLLM'));
+app.use('/api/question', require('./askLLM'));
 
 if (process.env.NODE_ENV === 'production') {
   // resolve to /opt/render/project/client/build
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(clientBuildPath));
 
   app.get(/.*/, (req, res) => {
-      res.sendFile(path.join(clientBuildPath, 'index.html'));
+    res.sendFile(path.join(clientBuildPath, 'index.html'));
   });
 }
 
