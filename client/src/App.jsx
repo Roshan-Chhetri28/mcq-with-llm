@@ -50,7 +50,7 @@ const questions = [
     "explanation": "ORDER BY is used in SQL to sort the result-set by one or more columns."
   },
   {
-    "question": "What does the 'continue' statement do in a loop?",
+    "question": "What does the continue statement do in a loop?",
     "options": {
       "A": "Stops the loop entirely",
       "B": "Skips the rest of the loop and jumps to the next iteration",
