@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "client:build": "cd client && npm install && npm run build",
-    "postinstall": ""
+    "postinstall": " "
   },
   "repository": {
     "type": "git",
