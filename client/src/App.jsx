@@ -67,15 +67,16 @@ const questions = [
 const App = () => {
 
   return (
-    <div className="max-w-4xl mx-auto p-6 font-sans">
+    <div className="max-w-4xl mx-auto p-6 font-sans ">
       {/* Question Section */}
       <h1 className="text-2xl font-bold text-gray-800">Question</h1>
       {
         questions.map((question, index) => (
-          <>
+          <div >
+          <hr />
             <QuestionDisplay key={index} questionData={question} />
             <AiResponse questionData={question}/>
-          </>
+          </div>
         ))
       }
 

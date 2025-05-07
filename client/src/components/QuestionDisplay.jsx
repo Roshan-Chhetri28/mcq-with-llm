@@ -28,9 +28,9 @@ export default function QuestionDisplay({ questionData: { question, options, cor
         </ReactMarkdown>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 ">
         {Object.entries(options).map(([key, value]) => (
-          <div key={key} className="p-3 border rounded-lg bg-gray-50">
+          <div key={key} className="p-3 border-0 rounded-lg bg-gray-50">
             <span className="font-semibold text-blue-600">{key}:</span>
             <span
               className={
@@ -38,8 +38,8 @@ export default function QuestionDisplay({ questionData: { question, options, cor
                   ? answer === correct
                     ? "ml-2 font-bold text-green-800"
                     : answer === key
-                    ? "ml-2 font-bold text-red-800"
-                    : "ml-2 font-bold text-gray-800"
+                      ? "ml-2 font-bold text-red-800"
+                      : "ml-2 font-bold text-gray-800"
                   : "ml-2 font-bold text-gray-800"
               }
               onClick={() => !click && handleAnswer(key)}

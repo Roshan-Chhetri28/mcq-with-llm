@@ -1,8 +1,9 @@
-const { ChatOpenAI } = require('@langchain/openai');
-const { HumanMessage, SystemMessage } = require('@langchain/core/messages');
 const express = require('express');
 const router = express.Router();
+const { ChatOpenAI } = require('@langchain/openai');
+const { HumanMessage, SystemMessage } = require('@langchain/core/messages');
 const LangChainTracer = require("@langchain/core/tracers/tracer_langchain")
+const StringOutputParser = require('@langchain/core/output_parsers')
 
 require('dotenv').config();
 
@@ -80,7 +81,6 @@ router.post('/', async (req, res) => {
         const userMessage = new HumanMessage({
             content: `Question: ${req.body.question.question}\nOptions: ${JSON.stringify(req.body.question.options)}\nUser Query: ${req.body.query}`
         });
-
         const response = await llm.invoke([systemMessage, userMessage]);
 
         res.json({ answer: response.content });
